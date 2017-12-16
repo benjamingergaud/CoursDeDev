@@ -1,0 +1,71 @@
+<h1> Gerer les cours </h1>
+
+<?php if (!empty($errors)):?>
+    <section class="errors">
+        <p><?=$errors?></p>
+    </section>
+<?php endif;?>
+<?php foreach($courses as $course):?>
+	<article class="flex flex-wrap full-width justify-center item">
+		<div class="flex flex-basis20 flex-column aside">
+
+			<p class="">Ecrit par <?= $course['pseudo']?></p>
+			<p>Le <?= $course['cour_date']?></p>
+			<div>
+				<a data-action="editCourse" data-id="<?= $course['id']?>" href="#"><i class="fa fa-pencil"></i> Editer</a>
+				<a data-action="removeCourse" data-id="<?= $course['id']?>" href="#"><i class="fa fa-trash"></i> Supprimer</a>
+			</div>
+		</div>
+
+		<div class="flex flex-basis80 flex-column article">
+			<a href="?page=courses&id=<?= $course['id']?>" class="full-width size25"><?= $course['title']?></a>
+			<p class="full-width content"><?= $course['content']?></p>
+		</div>
+	</article>
+    <section id="editCourse<?= $course['id']?>" class="hidden">
+        <form class="generic-form" method="post">
+            <ul>
+                <li>
+                    <label for="title">Titre du Cours : </label>
+                    <input type="text" name="title" id="title" value="<?= $course['title']?>">
+                </li>
+                <li>
+                    <label for="content">Contenu du Cours : </label>
+                    <textarea name="content" id="content"><?= $course['content']?></textarea>
+                </li>
+                <li>
+                    <label for="category">Catégorie :</label>
+                    <select name="category" id="category" data-selected="<?= $course['category_id']?>">
+                        <option value="1">HTML</option>
+                        <option value="2">PHP</option>
+                        <option value="3">CSS</option>
+                        <option value="4">Javascript</option>
+                        <option value="5">MySQL</option>
+                    </select>
+                </li>
+            </ul>
+            <input type="hidden" value="<?= $course['id']?>" name="courseId">
+            <input type="submit" value="sauvegarder le cours" name="updateCourse">
+        </form>
+    </section>
+
+<?php endforeach;?>
+
+<script type="text/javascript">
+    tinymce.init({
+        selector: 'textarea',
+        height: 350,
+        theme: 'modern',
+        plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount tinymcespellchecker a11ychecker imagetools mediaembed  linkchecker contextmenu colorpicker textpattern help',
+        toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
+</script>

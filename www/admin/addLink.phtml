@@ -1,0 +1,31 @@
+<h1> Ajouter un nouveau Lien</h1>
+
+<?php if (!empty($errors)):?>
+    <section class="errors">
+        <p><?=$errors?></p>
+    </section>
+<?php endif;?>
+<form class="generic-form" method="post">
+	<ul>
+		<li>
+			<label for="title">Titre du Lien : </label>
+			<input type="text" name="title" id="title">
+		</li>
+		<li>
+			<label for="content">Contenu du Lien : </label>
+			<input type="text" name="content" id="content">
+		</li>
+		<li>
+			<label for="category">Catégorie :</label>
+			<select name="category" id="category">
+				<option value="1">HTML</option>
+				<option value="2">PHP</option>
+				<option value="3">CSS</option>
+				<option value="4">Javascript</option>
+				<option value="5">MySQL</option>
+				<option value="6">Autres</option>
+			</select>
+		</li>
+	</ul>
+	<input type="submit" value="Ajouter le lien" name="addLink">
+</form>

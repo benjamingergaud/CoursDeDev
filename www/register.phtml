@@ -1,0 +1,50 @@
+<h1>S'inscrire</h1>
+<?php if (!empty($errors)):?>
+    <section class="errors">
+        <p><?=$errors?></p>
+    </section>
+<?php endif;?>
+<form method="post" class="generic-form">
+	<fieldset>
+		<legend>Informations Personelles</legend>
+		<ul>
+			<li>
+				<label for="lastName">
+					Nom :
+					<input type="text" name="lastName" placeholder="Nom" id="lastName">
+				</label>
+			</li>
+			<li>
+				<label for="name">
+					Prénom :
+					<input type="text" name="name" placeholder="Prenom" id="name">
+				</label>
+			</li>
+			<li>
+				<label for="mail">
+					Adresse mail :
+					<input type="text" name="mail" placeholder="aaa@aaa.aa" id="mail">
+				</label>
+			</li>
+
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend>Pseudo et mot de passe </legend>
+		<ul>
+			<li>
+				<label for="password">
+					Mot de Passe :
+					<input type="password" name="password" placeholder="Mot de passe" id="password">
+				</label>
+			</li>
+			<li>
+				<label for="Pseudo">
+					Pseudo :
+					<input type="text" name="pseudo" placeholder="Pseudo" id="Pseudo">
+				</label>
+			</li>
+		</ul>
+	</fieldset>
+	<input type="submit" name="inscription" value="Valider">
+</form>

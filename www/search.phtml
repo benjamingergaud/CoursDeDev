@@ -1,0 +1,44 @@
+
+<h1>Recherche de "<?= $search ?>" dans les cours et liens</h1>
+
+<?php if (!empty($errors)):?>
+    <section class="errors">
+        <p><?=$errors?></p>
+    </section>
+<?php endif;?>
+<?php if(!empty($courses)):?>
+<section>
+	<h2>Cours</h2>
+	<?php foreach($courses as $course):?>
+		<article class="flex flex-wrap full-width justify-center item">
+			<div class="flex flex-basis20 flex-column aside">
+				<p class="">Ecrit par <?= $course['pseudo']?></p>
+				<p>Le <?= $course['cour_date']?></p>
+			</div>
+
+			<div class="flex flex-basis80 flex-column article">
+				<a href="?page=courses&id=<?= $course['id']?>" class="full-width size25"><?= $course['title']?></a>
+				<p class="full-width content"><?= $course['content']?></p>
+			</div>
+		</article>
+	<?php endforeach;?>
+</section>
+<?php endif;?>
+<?php if (!empty($links)):?>
+<section>
+	<h2>Liens</h2>
+	<?php foreach($links as $link):?>
+		<article class="flex flex-wrap full-width justify-center item">
+			<div class="flex flex-basis20 flex-column aside">
+				<p class="">Ecrit par <?= $link['pseudo']?></p>
+				<p>Le <?= $link['link_date']?></p>
+			</div>
+
+			<div class="flex flex-basis80 flex-column article">
+				<a href="?page=courses&id=<?= $link['id']?>" class="full-width size25"><?= $link['title']?></a>
+				<a href="<?=$link['content']?>"  target = "_blank" class="full-width"><?=  mb_strimwidth($link['content'], 0, 100, "...") ?></a>
+			</div>
+		</article>
+	<?php endforeach;?>
+</section>
+<?php endif;?>

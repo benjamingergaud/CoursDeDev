@@ -1,0 +1,29 @@
+<h1>Se Connecter</h1>
+<?php if (!empty($errors)):?>
+	<section class="errors">
+		<?php foreach ($errors as $error):?>
+			<p><?=$error?></p>
+		<?php endforeach;?>
+	</section>
+<?php endif;?>
+<form class="generic-form" method="post">
+	<ul>
+		<li>
+			<label for="mail">
+				Adresse mail :
+				<input type="text" name="mail" placeholder="aaa@aaa.aa" id="mail">
+			</label>
+		</li>
+		<li>
+			<label for="password">
+				Mot de Passe :
+				<input type="password" name="password" placeholder="Mot de passe" id="password">
+			</label>
+		</li>
+        <li>
+            <div class="g-recaptcha" data-sitekey="6LcYCj0UAAAAAMNRlGA4HogdTI5AF1Qoe_igoCfK"></div>
+        </li>
+	</ul>
+	<input type="submit" name="login" value="Se connecter">
+</form>
+<script src='https://www.google.com/recaptcha/api.js'></script>

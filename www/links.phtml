@@ -1,0 +1,25 @@
+
+<?php if (!empty($errors)):?>
+    <section class="errors">
+        <p><?=$errors?></p>
+    </section>
+<?php endif;?>
+<?php if($category !== ""):?>
+	<h1 class="text-center">Les liens utiles pour <?= strtoupper($category) ?></h1>
+<?php endif;?>
+
+<!-- On affiche la liste des cours si aucun cour n'est cliqué -->
+<?php foreach($links as $link):?>
+<article class="flex flex-wrap full-width justify-center item">
+	<div class="flex flex-basis20 flex-column aside">
+		<p class="">Ecrit par <?= $link['pseudo']?></p>
+		<p>Le <?= $link['link_date']?></p>
+	</div>
+
+	<div class="flex flex-basis80 flex-column article">
+		<a href="?page=links&id=<?= $link['id']?>" class="full-width size25"><?= $link['title']?></a>
+		<a href="<?=$link['content']?>"  target = "_blank" class="full-width"><?=  mb_strimwidth($link['content'], 0, 100, "...") ?></a>
+	</div>
+</article>
+<?php endforeach;?>
+

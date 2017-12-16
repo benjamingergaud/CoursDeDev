@@ -1,0 +1,22 @@
+<?php if ($userSession->isAdminLogged()):?>
+	<?php if ($action == "addCourse"):?>
+		<?php include "www/admin/addcourse.phtml"?>
+	<?php endif; ?>
+
+	<?php if ($action == "addLink"):?>
+		<?php include "www/admin/addLink.phtml"?>
+
+	<?php endif;?>
+
+	<?php if ($action == "manageCourse"):?>
+		<?php include "www/admin/manageCourse.phtml"?>
+
+	<?php endif;?>
+
+	<?php if ($action == "manageLink"):?>
+		<?php include "www/admin/manageLink.phtml"?>
+
+	<?php endif;  //todo securiser la vue admin avec is admin logged et un htaccess?>
+<?php else:?>
+	<?php include "www/acces_refuse.phtml"?>
+<?php endif;?>

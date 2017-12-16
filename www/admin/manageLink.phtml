@@ -1,0 +1,54 @@
+<h1>Gerer les Liens</h1>
+
+<?php if (!empty($errors)):?>
+    <section class="errors">
+        <p><?=$errors?></p>
+    </section>
+<?php endif;?>
+<?php foreach($links as $link):?>
+	<article class="flex flex-wrap full-width justify-center item">
+		<div class="flex flex-basis20 flex-column aside">
+			<p class="">Ecrit par <?= $link['pseudo']?></p>
+			<p>Le <?= $link['link_date']?></p>
+			<div>
+				<a data-action="editLink" data-id="<?= $link['id']?>" href="#"><i class="fa fa-pencil"></i> Editer</a>
+				<a data-action="removeLink" data-id="<?= $link['id']?>" href="#"><i class="fa fa-trash"></i> Supprimer</a>
+			</div>
+
+		</div>
+
+		<div class="flex flex-basis80 flex-column article">
+			<a href="?page=links&id=<?= $link['id']?>" class="full-width size25"><?= $link['title']?></a>
+			<a href="<?=$link['content']?>"  target = "_blank" class="full-width"><?=  mb_strimwidth($link['content'], 0, 100, "...") ?></a>
+
+		</div>
+
+	</article>
+    <section id="editLink<?= $link['id']?>" class="hidden">
+        <form class="generic-form" method="post">
+            <ul>
+                <li>
+                    <label for="title">Titre du Lien : </label>
+                    <input type="text" name="title" id="title" value="<?= $link['title']?>">
+                </li>
+                <li>
+                    <label for="content">Contenu du Lien : </label>
+                    <input type="text" name="content" id="content" value="<?= $link['content']?>">
+                </li>
+                <li>
+                    <label for="category">Catégorie :</label>
+                    <select name="category" id="category" data-selected="<?= $link['category_id']?>">
+                        <option value="1">HTML</option>
+                        <option value="2">PHP</option>
+                        <option value="3">CSS</option>
+                        <option value="4">Javascript</option>
+                        <option value="5">MySQL</option>
+                        <option value="6">Autres</option>
+                    </select>
+                </li>
+            </ul>
+            <input type="hidden" value="<?= $link['id']?>" name="linkId">
+            <input type="submit" value="sauvegarder le cours" name="updateLink">
+        </form>
+    </section>
+<?php endforeach;?>

@@ -1,0 +1,57 @@
+<?php if($category !== ""):?>
+	<h1 class="text-center">Les cours de <?= strtoupper($category) ?></h1>
+<?php endif;?>
+<?php if (!empty($errors)):?>
+    <section class="errors">
+        <p><?=$errors?></p>
+    </section>
+<?php endif;?>
+<!-- On affiche la liste des cours si aucun cour n'est cliqué -->
+<?php foreach($courses as $course):?>
+<article class="flex flex-wrap full-width justify-center item">
+	<div class="flex flex-basis20 flex-column aside">
+		<p class="">Ecrit par <?= $course['pseudo']?></p>
+		<p>Le <?= $course['cour_date']?></p>
+	</div>
+
+	<div class="flex flex-basis80 flex-column article">
+		<a href="?page=courses&id=<?= $course['id']?>" class="full-width size25"><?= $course['title']?></a>
+		<p class="full-width content"><?= $course['content']?></p>
+	</div>
+</article>
+<?php endforeach;?>
+
+<!-- On affiche les details du cours si un cour est cliqué -->
+<?php if(!empty($cour)):?>
+<article>
+	<h1 class="full-width text-center"><?= $cour['title']?></h1>
+	<p class="full-width"><?= $cour['content']?></p>
+	<p class="">Ecrit par <?= $cour['pseudo']?> le <?= $cour['cour_date']?></p>
+</article>
+<section>
+    <h2>Commentaires</h2>
+	<?php foreach ($comments as $comment):?>
+        <article class="flex flex-wrap full-width justify-center item ">
+            <div class="flex flex-basis20 flex-column aside">
+                <p class="">Ecrit par <?= $comment['pseudo']?></p>
+                <p>Le <?= $comment['comment_date']?></p>
+            </div>
+
+            <div class="flex flex-basis80 flex-column article">
+                <p class="full-width content"><?= $comment['content']?></p>
+            </div>
+        </article>
+
+	<?php endforeach;?>
+    <?php if (session_status() != PHP_SESSION_NONE):?>
+        <?php if ($userSession->isLogged()):?>
+            <h3>Ajouter un commentaire</h3>
+            <form class="generic-form" method="post">
+                <textarea rows="3" name="comment_content" placeholder="Ecrire un commentaire"></textarea>
+                <input type="submit" name="commenter" value="Envoyer">
+            </form>
+        <?php endif;?>
+    <?php endif;?>
+</section>
+
+<?php endif;?>

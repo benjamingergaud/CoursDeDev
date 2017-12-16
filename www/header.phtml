@@ -1,0 +1,94 @@
+
+<header class="flex flex-wrap align-center">
+
+	<nav>
+
+		<a href="index.php?page=home" id="logo"><img src="www/img/cddev.svg"></a>
+		<a href="#" id="linkCours" data-menu="coursMenu">Cours</a>
+		<a href="#" data-menu="linksMenu">Liens utiles</a>
+		<a href="index.php?page=contact">Contact</a>
+        <?php if(session_status() != PHP_SESSION_NONE ):?>
+            <?php if($userSession->isAdminLogged()):?>
+                <a href="#" data-menu="adminMenu">Panneau Admin</a>
+            <?php endif; ?>
+		<?php endif; ?>
+
+    </nav>
+
+
+    <form id="search_bar">
+        <i class="material-icons" id="btn_search">search</i>
+        <input type="text" placeholder="Rechercher" name="search" class="search">
+        <div id="user-nav">
+		    <?php if(session_status() != PHP_SESSION_NONE ):?>
+
+			    <?php if($userSession->isLogged()):?>
+
+                    <a href="index.php?page=logout" >Se deconnecter </a>
+			    <?php else: ?>
+                    <a href="index.php?page=login" >Se connecter </a>
+                    <a href="index.php?page=register" >S'inscrire </a>
+			    <?php endif; ?>
+		    <?php endif; ?>
+
+        </div>
+    </form>
+    <div id="coursMenu" class="flex hidden full-width space-around absolute" data-submenu>
+		<div class="flex flex-column">
+			<a href="index.php?page=courses&subject=html" class="color-white sub-menu">HTML</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=courses&subject=php" class="color-white sub-menu">PHP</a>
+		</div>
+		<div class="flex flex-column">
+			<a  href="index.php?page=courses&subject=css" class="color-white sub-menu">CSS</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=courses&subject=javascript"  class="color-white sub-menu">Javascript</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=courses&subject=mysql"  class="color-white sub-menu">MySQL</a>
+		</div>
+	</div>
+	<div id="linksMenu" class="flex hidden full-width space-around absolute" data-submenu>
+		<div class="flex flex-column">
+			<a href="index.php?page=links&subject=html" class="color-white sub-menu">HTML</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=links&subject=php" class="color-white sub-menu">PHP</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=links&subject=css" class="color-white sub-menu">CSS</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=links&subject=javascript" class="color-white sub-menu">Javascript</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=links&subject=mysql" class="color-white sub-menu">MySQL</a>
+		</div>
+		<div class="flex flex-column">
+			<a href="index.php?page=links&subject=other" class="color-white sub-menu">Autres</a>
+		</div>
+	</div>
+	<?php if(session_status() != PHP_SESSION_NONE ):?>
+
+        <?php if($userSession->isAdminLogged()):?>
+            <div id="adminMenu" class="flex hidden full-width space-around absolute" data-submenu>
+                <div class="flex flex-column">
+                    <a href="index.php?page=admin&action=addCourse" class="color-white sub-menu">Ajouter un cours</a>
+                </div>
+                <div class="flex flex-column">
+                    <a href="index.php?page=admin&action=manageCourse" class="color-white sub-menu">Gerer les cours</a>
+                </div>
+                <div class="flex flex-column">
+                    <a href="index.php?page=admin&action=addLink" class="color-white sub-menu">Ajouter un lien</a>
+                </div>
+                <div class="flex flex-column">
+                    <a href="index.php?page=admin&action=manageLink" class="color-white sub-menu">Gerer les liens</a>
+                </div>
+
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+
+</header>
