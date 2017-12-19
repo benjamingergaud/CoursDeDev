@@ -16,6 +16,19 @@ header nav a {
     font-size:2.3rem;
     text-shadow: #333333 1px 1px 1px ;
 }
+#logo img:hover{
+    animation: skew 2s ease /*infinite*/ alternate;
+}
+@keyframes rotate{
+    from {transform: rotateY(0);}
+    50%  {transform: rotateY(180deg)}
+    to   {transform: rotateY(0);}
+}
+@keyframes skew{
+    from {transform: skew(0,0);}
+
+    to   {transform: skew(180deg ,180deg);}
+}
 header{
     background: url("../img/etoiles.svg");
     background-color: #00a8f3;
@@ -25,6 +38,7 @@ header{
 
 
 }
+
 header nav {
     width: 80%;
     margin: 20px auto 0 ;
@@ -41,10 +55,10 @@ header nav {
 }
 main {
     background-color: rgba(8, 180, 255,0.95);
-    box-shadow: 0 0 2em 3px rgba(197,255,253,1);
+    box-shadow: 0 0 2em 3px rgba(197,255,253,1),0 0 10px 2px #fff inset;
     width: 80%;
     margin: 2px auto 0;
-    padding:10px ;
+    padding:10px 15px ;
     height: auto;
 }
 #logo {
@@ -137,11 +151,12 @@ justify-content: space-around;                                      /**/
 .item {
     background-color : rgba(197,255,253,1);
     color: #fff;
-    margin : 10px 0;
+    margin : 15px 0;
     overflow: hidden;
     box-sizing: border-box;
     max-height:115px ;
     overflow: hidden;
+    box-shadow: 6px 6px 5px 1px #1E88E5;
 }
 .text-center{
     text-align: center;
@@ -164,6 +179,7 @@ justify-content: space-around;                                      /**/
     background-color:rgba(0,168,243,0.90);
     padding: 10px;
     box-sizing: border-box;
+    box-shadow: 0 0 10px 2px #fff inset;
 }
 .item .content {
     color: #00a8f3;
@@ -210,3 +226,62 @@ input.search::placeholder{
     flex-wrap: nowrap;
     flex-direction: row-reverse;
 }
+
+/* ------------- Generic Form -------------- */
+
+.generic-form li{
+    list-style-type: none;
+}
+.generic-form fieldset {
+    padding: 10px;
+    color: #005B83;
+    border-radius: 15px;
+    border-color:#fff;
+    margin-bottom: 10px;
+}
+.generic-form fieldset legend {
+    color: #fff;
+    margin: 0 5px;
+}
+.generic-form input{
+    background-color: transparent;
+    outline-color: #fff;
+    border: #fff solid 1px;
+    border-radius: 15px;
+    padding:5px;
+    margin:5px 0;
+}
+.generic-form input[type="submit"]{
+    border: none;
+    background-color: #00a8f3;
+    color: #fff;
+    margin-left: 45%;
+    text-align: center;
+    padding:10px 15px;
+}
+.generic-form input::placeholder{
+    color:  rgba(197, 255, 252, 1);
+}
+.generic-form input:focus{
+    outline: none;
+}
+.generic-form label {
+    color:  #fff;
+}
+.generic-form li{
+    margin:3px;
+}
+.errors{
+    /* structure */
+    margin: 2em 0;
+    padding: 0.5em 1em;
+
+    /* presentation */
+    background-color: rgba(0,168,243,0.8);
+    box-shadow: 0 0 10px 4px #FF9800 ;
+    /*border: 2px solid #FF3300;*/
+    border-radius: 6px;
+    color: white;
+}
+
+/* TODO gerer le design des erreurs */

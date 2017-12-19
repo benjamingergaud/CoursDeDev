@@ -35,6 +35,8 @@
 					$userSession = new UserSession();
 					$user_id = $userSession->get_user_id();
 					$category = $_POST['category'];
+					if(empty($_POST['content'])||empty($_POST['category'])||empty($_POST['title']))
+						throw new DomainException("Veuillez remplir tous les champs");
 					$coursesModel = new CoursesModel();
 					$coursesModel->addCour($_POST['content'],$category,$_POST['title'],$user_id);
 
@@ -44,7 +46,8 @@
 				if(array_key_exists("addLink",$_POST)){
 					$userSession = new UserSession();
 					$user_id = $userSession->get_user_id();
-
+					if(empty($_POST['content'])||empty($_POST['category'])||empty($_POST['title']))
+						throw new DomainException("Veuillez remplir tous les champs");
 					$linksModel = new LinksModel();
 					$linksModel->addLink($_POST['content'],$_POST['category'],$_POST['title'],$user_id);
 				}
@@ -87,7 +90,10 @@
 				];
 			}catch (DomainException $e){
 				return [
-					'errors' => $e->getMessage()
+					'errors' => $e->getMessage(),
+					'action' => $this->action,
+					'courses' => $this->courses,
+					'links' => $this->links
 				];
 			}
 		}

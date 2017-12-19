@@ -1,0 +1,26 @@
+<h1>Nous Contacter</h1>
+<?php if (!empty($errors)):?>
+	<section class="errors">
+		<p><?=$errors?></p>
+	</section>
+<?php endif;?>
+<form class="generic-form" method="post">
+	<fieldset>
+		<legend>Email</legend>
+		<ul>
+			<li>
+				<label for="subject">Objet de la demande de contact : </label>
+				<input type="text" id="subject" name="subject">
+			</li>
+			<li>
+				<label for="content">Description de votre demande : </label>
+				<textarea id="content" name="content" rows="3" class="full-width"></textarea>
+			</li>
+		</ul>
+	</fieldset>
+	<?php if($userSession->isLogged()):?>
+		<input type="submit" value="Valider">
+	<?php else:?>
+		<p>Connectez vous pour envoyer votre demande de contact.</p>
+	<?php endif;?>
+</form>

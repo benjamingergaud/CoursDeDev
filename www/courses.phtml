@@ -45,9 +45,13 @@
 	<?php endforeach;?>
     <?php if (session_status() != PHP_SESSION_NONE):?>
         <?php if ($userSession->isLogged()):?>
-            <h3>Ajouter un commentaire</h3>
+
             <form class="generic-form" method="post">
-                <textarea rows="3" name="comment_content" placeholder="Ecrire un commentaire"></textarea>
+                <fieldset>
+                    <legend>Ajouter un commentaire</legend>
+                    <textarea rows="3" name="comment_content" placeholder="Ecrire un commentaire"></textarea>
+                </fieldset>
+
                 <input type="submit" name="commenter" value="Envoyer">
             </form>
         <?php endif;?>
