@@ -6,10 +6,19 @@ $(function () {
     $('#btn_search').click(function () {
         $('#search_bar').submit();
     })
-
+    checkForms();
 });
 
+function checkForms() {
 
+    // si le selecteur $('form') à trouvé des formulaires dans la page, on lance la classe
+    var $form = $('form');
+    console.log("test"+$form.length);
+    if ($form.length) {
+        var formFilter = new FormFilter($form);
+        formFilter.run();
+    }
+}
 function onClickMenu() {
 
     //recuperation de l'id du sous menu a afficher contenue dans l'attribut data menu de l'element cliqué

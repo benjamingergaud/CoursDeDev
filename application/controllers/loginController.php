@@ -4,7 +4,6 @@
 
 			try{
 
-
 				if (array_key_exists("login" , $_POST)){
 					require_once "recaptchalib.php";
 					$secret = "6LdsCT0UAAAAACwR6eScYv2gtB5pMO_QhNOEEjy2";
@@ -41,7 +40,6 @@
 			$userSession=new UserSession();
 			$userSession->create($user_infos['id'], $mail, $user_infos['fullname'],$user_infos['status']);
 			header('Location: index.php');
-			//todo créer un formfilter en js pour controller les formulaires
 		}
 	}
 

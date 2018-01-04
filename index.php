@@ -1,6 +1,5 @@
 <?php
 require_once "config.php";
-// todo Ajouter un captcha et cloudflare lors du login pour eviter les tentatives de hack par spam
 
 
 $userSession = new UserSession();
@@ -26,5 +25,5 @@ try {
 	$errors = [$exception->getMessage()];
 }
 
-
+//todo ajouter le verifieur de formulaires.
 include WWW . "layout.phtml";

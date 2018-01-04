@@ -54,7 +54,7 @@ header nav {
     text-decoration: none;
 }
 main {
-    background-color: rgba(8, 180, 255,0.95);
+    background-color: rgba(8, 180, 255,1);
     box-shadow: 0 0 2em 3px rgba(197,255,253,1),0 0 10px 2px #fff inset;
     width: 80%;
     margin: 2px auto 0;
@@ -77,10 +77,12 @@ header nav a + a {
 }
 
 h1{
+    margin-top : 45px;
     color: #fff;
     text-align: center;
 }
 h2{
+    margin-left:25px;
     color: #005B83;
 }
 /**/
@@ -95,7 +97,7 @@ h2{
     flex-wrap: wrap;                                                /**/
 }                                                                   /**/
 .space-around {                                                     /**/
-justify-content: space-around;                                      /**/
+    justify-content: space-around;                                      /**/
 }                                                                   /**/
 .align-center{                                                      /**/
     align-items: center;                                            /**/
@@ -173,7 +175,7 @@ justify-content: space-around;                                      /**/
     margin: 10px;
 }
 .item p {
-    margin: 10px;
+    margin: 10px 0 10px;
 }
 .item .aside{
     background-color:rgba(0,168,243,0.90);
@@ -190,6 +192,12 @@ justify-content: space-around;                                      /**/
 }
 .article , .article a {
     color: #00a8f3;
+}
+.cour{
+    color:#fff;
+}
+.cour li{
+    margin : 5px;
 }
 input.search{
     background-color: transparent;
@@ -284,4 +292,53 @@ input.search::placeholder{
     color: white;
 }
 
-/* TODO gerer le design des erreurs */
+@media screen and (min-width:768px) and (max-width:1024px) {
+    header nav {
+        display: flex;
+        flex-direction: column;
+    }
+    header {
+        height: 300px;
+    }
+    #coursMenu , #linksMenu , #adminMenu{
+        top:300px;
+    }
+    .article{
+        max-height: 115px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .item{
+        justify-content: flex-start;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+}
+@media screen and (max-width:768px) {
+    header nav {
+        display: flex;
+        flex-direction: column;
+    }
+    header {
+        height: 330px;
+    }
+    #user-nav{
+        flex-basis: 100%;
+    }
+    #search_bar{
+        flex-wrap: wrap;
+    }
+    #coursMenu , #linksMenu , #adminMenu{
+        top:330px;
+    }
+    .article {
+        flex-basis: 100%;
+        max-height: 115px;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    .aside{
+        display: none;
+    }
+}

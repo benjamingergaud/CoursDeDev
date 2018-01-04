@@ -1,10 +1,13 @@
 <h1>S'inscrire</h1>
 <?php if (!empty($errors)):?>
-    <section class="errors">
+    <section id="errors" class="errors">
         <p><?=$errors?></p>
     </section>
 <?php endif;?>
 <form method="post" class="generic-form">
+    <section id="errors" class="errors hidden">
+        <p></p>
+    </section>
 	<fieldset>
 		<legend>Informations Personelles</legend>
 		<ul>
@@ -23,7 +26,7 @@
 			<li>
 				<label for="mail">
 					Adresse mail :
-					<input type="text" name="mail" placeholder="aaa@aaa.aa" id="mail">
+					<input type="text" name="mail" placeholder="aaa@aaa.aa" id="mail" data-type="email" data-name="email">
 				</label>
 			</li>
 
@@ -35,7 +38,8 @@
 			<li>
 				<label for="password">
 					Mot de Passe :
-					<input type="password" name="password" placeholder="Mot de passe" id="password">
+					<input type="password" name="password" placeholder="Mot de passe" id="password" data-type="password" data-name="password" data-min="7"
+                    data-max="15">
 				</label>
 			</li>
 			<li>

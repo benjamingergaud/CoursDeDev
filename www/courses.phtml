@@ -23,7 +23,7 @@
 
 <!-- On affiche les details du cours si un cour est cliqué -->
 <?php if(!empty($cour)):?>
-<article>
+<article class="cour">
 	<h1 class="full-width text-center"><?= $cour['title']?></h1>
 	<p class="full-width"><?= $cour['content']?></p>
 	<p class="">Ecrit par <?= $cour['pseudo']?> le <?= $cour['cour_date']?></p>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="flex flex-basis80 flex-column article">
-                <p class="full-width content"><?= $comment['content']?></p>
+                <p class="full-width content"><?= htmlspecialchars($comment['content'])?></p>
             </div>
         </article>
 
