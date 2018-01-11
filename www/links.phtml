@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="flex flex-basis80 flex-column article">
-		<a href="?page=links&id=<?= $link['id']?>" class="full-width size25"><?= $link['title']?></a>
+		<h2 class="full-width size25"><?= $link['title']?></h2>
 		<a href="<?=$link['content']?>"  target = "_blank" class="full-width"><?=  mb_strimwidth($link['content'], 0, 100, "...") ?></a>
 	</div>
 </article>
