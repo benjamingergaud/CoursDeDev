@@ -1,49 +1,267 @@
 html{font-size: 62.5%;
     height:100%;}
+
 body{
-    /*background-color: #81D4FA;*/
-    background: url("../img/etoiles.svg") no-repeat ;
+    background-color: #d5d6d2;
+    /*background: url("../img/etoiles.svg") no-repeat ;*/
 
     font-size: 16px;
     height: 100%;
 }
 
 header nav a {
+    transition-property: transform;
+    transition-duration: 0.7s;
+    transform: matrix3d(0.5, 0, -0.5, 0,
+    0, 1, 0, 0,
+    0.5, 0, 0.5, 0,
+    0, 0, 0, 1);
     text-decoration: none;
+
     color: white;
-    margin: 20px 20px 0;
+    padding: 10px 20px ;
     font-weight: bold;
     font-size:2.3rem;
     text-shadow: #333333 1px 1px 1px ;
 }
+/* --------- LOGO animation ---------- */
+.stage {
+    width: 120px;
+    height: 50px;
+    display: inline-block;
+    margin: 5px;
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    -o-perspective: 1200px;
+    perspective: 1200px;
+    -webkit-perspective-origin: 50% 50%;
+    -moz-perspective-origin: 50% 50%;
+    -ms-perspective-origin: 50% 50%;
+    -o-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
+}
+.ball {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    /*border-radius: 50%;*/
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    background: url("../img/cddev.svg") repeat-x;
+    background-size: auto 100%;
+    -webkit-animation: move-map 30s infinite linear reverse ;
+    -moz-animation: move-map 30s infinite linear reverse;
+    -o-animation: move-map 30s infinite linear reverse;
+    -ms-animation: move-map 30s infinite linear reverse;
+    animation: move-map 30s infinite linear reverse ;
+}
+
+.ball:before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    /* border-radius: 50%;
+     box-shadow: -40px 10px 70px 10px rgba(0,0,0,0.5) inset;*/
+    z-index: 2;
+}
+
+.ball:after {
+    content: "";
+    position: absolute;
+    /*border-radius: 50%;*/
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    -webkit-filter: blur(0);
+    opacity: 0.3;
+    /*background: radial-gradient(circle at 50% 80%, #81e8f6, #76deef 10%, #055194 66%, #062745 100%);*/
+}
+
+.ball .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);*/
+    -webkit-transform: rotateX(90deg) translateZ(-150px);
+    -moz-transform: rotateX(90deg) translateZ(-150px);
+    -ms-transform: rotateX(90deg) translateZ(-150px);
+    -o-transform: rotateX(90deg) translateZ(-150px);
+    transform: rotateX(90deg) translateZ(-150px);
+    z-index: -1;
+}
+/* -------LOGO animation --------------*/
+
+/* ------- CARD FLIP ANIMATION ---------*/
+.scene {
+    width: 32%;
+    height: 150px;
+    /*border: 1px solid #CCC;*/
+    margin: 0;
+    perspective: 600px;
+    display: inline-block;
+}
+.scene + .scene {
+    margin-left:0.1%;
+}
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform-origin: center right;
+    transition: transform 1s;
+}
+
+.card.is-flipped {
+    transform: translateX(-100%) rotateY(-180deg);
+}
+
+.card__face {
+    box-shadow: #999 5px 5px 3px;
+    border-radius: 15px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*line-height: 260px;*/
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 10px;
+    backface-visibility: hidden;
+}
+
+.card__face--front {
+    background: #d5d6d2;
+    overflow: hidden;
+
+}
+.card__face--front p {
+    color: #FF9D00;
+    text-decoration: none;
+    padding:15% 10px;
+    height:100%;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.card__face--back {
+    background: #444;
+    transform: rotateY(180deg);
+    overflow: hidden;
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+}
+.card__face--back:hover .content{
+    filter: blur(1px) opacity(0.2);
+    cursor: default;
+
+}
+.card__face--back:hover .over-card{
+    display: block;
+}
+.over-card{
+    display: none;
+    position: absolute;
+    padding:5px;
+    width:100%;
+    height:auto;
+    /*background:linear-gradient(to bottom, #444 0%,#eee 100%) ;*/
+    bottom:0;
+    left:0;
+    margin:0;
+    opacity: 1;
+    color: #FFF;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.over-card:hover{
+    transition: color 1s;
+    color: #FF9D00;
+}
+/* --------- CARD FLIP ANIMATION ------- */
+header nav a:hover , #user-nav a:hover{
+    /*transition-property: transform;*/
+    /*transition-duration: 0.7s;*/
+    transition: background-color 0.7s , transform 0.7s , color 0.7s;
+    transform: matrix3d(1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 2, 1);
+    /*animation: bounce 1s ease infinite alternate ;*/
+    background-color: rgba(255,255,255,0.3);
+    color:#FF9D00 ;
+}
 #logo img:hover{
     animation: skew 2s ease /*infinite*/ alternate;
 }
+@keyframes move-map {
+    0% {
+        background-position: -849px 0; }
+
+    100% {
+        background-position: 0 0; } }
+@keyframes rotateIn {
+    from {transform: rotateZ(0 )  }
+    to {transform: rotateZ(-30deg)}
+}
+@keyframes anim {
+    from {transform : matrix3d(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);}
+
+    to{
+        transform: matrix3d(0.583333, 0.186887, 0.79044, 0, -0.52022, 0.833333, 0.186887, 0, -0.623773, -0.52022, 0.583333, 0, 0, 0, 0, 1);
+    }
+}
 @keyframes rotate{
-    from {transform: rotateY(0);}
-    50%  {transform: rotateY(180deg)}
-    to   {transform: rotateY(0);}
+    from {transform: rotate(0 ) translateY(0px) rotateY(0);  }
+    to  {transform: rotate(10deg) rotateY(10deg) translateY(10px)}
+
 }
 @keyframes skew{
     from {transform: skew(0,0);}
 
     to   {transform: skew(180deg ,180deg);}
 }
+@keyframes bounce {
+    from {transform: translateY(0px)}
+    to {transform: translateY(10px)}
+}
 header{
     background: url("../img/etoiles.svg");
-    background-color: #00a8f3;
+    /*background-color: #00a8f3;   BLEU */
+    background-color: #2f2e33;
     width:100%;
     height: 100px;
     box-shadow:0px 0px 2em  rgba(197,255,253,1) ;
+    position: relative;
+    perspective: 2000px;
 
-
+margin-top: 0;
+    top:0;
+    z-index: 1000;
 }
 
 header nav {
-    width: 80%;
-    margin: 20px auto 0 ;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    /*margin: 20px auto 0 ;*/
+}
+header nav a i.material-icons {
+    display: none;
 }
 #user-nav{
+    position: absolute;
+    top: 5%;
+    right: 2%;
     display: block;
     width: 100%;
     text-align: right;
@@ -52,11 +270,13 @@ header nav {
     color: #fff;
     text-shadow: #333333 1px 1px 1px ;
     text-decoration: none;
+    padding: 5px;
 }
 main {
-    background-color: rgba(8, 180, 255,1);
-    box-shadow: 0 0 2em 3px rgba(197,255,253,1),0 0 10px 2px #fff inset;
-    width: 80%;
+    /*background-color: #607D8B;*/
+    background: linear-gradient(to bottom, #2f2e33 0%,#d5d6d2 100%);
+    box-shadow: 0 0 2em 3px rgba(255,255,253,1),0 0 10px 2px #fff inset;
+    width: 85%;
     margin: 2px auto 0;
     padding:10px 15px ;
     height: auto;
@@ -72,7 +292,7 @@ main {
 }
 header nav a + a {
     justify-self: flex-end;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     font-size: 2rem;
 }
 
@@ -83,7 +303,7 @@ h1{
 }
 h2{
     margin-left:25px;
-    color: #005B83;
+    color: #FF9D00;
 }
 /**/
 /* -------------------------| Classes Flex |------------------------- */
@@ -123,7 +343,7 @@ h2{
     flex-basis: 100%;
 }
 .color-white{
-    color : #00a8f3;
+    color : #fff;
 }
 .sub-menu {
     font-size: 1.5rem;
@@ -134,11 +354,12 @@ h2{
 #coursMenu , #linksMenu , #adminMenu{
     background: url("../img/etoiles.svg") ;
     background-position-y:-100px ;
-    background-color: rgba(45, 190, 252,0.95);
+    background-color: rgba(120, 120, 120,0.7);
     box-shadow:0px 5px 2em rgba(197,255,253,1) ;
-
+    flex-direction: column;
     top:100px;
     left: 0;
+    z-index: 1;
 }
 #coursMenu a , #linksMenu a  ,#adminMenu a{
     text-decoration: none;
@@ -149,16 +370,20 @@ h2{
     text-shadow: #333333 1px 1px 1px ;
 
 }
-
+#coursMenu a:hover , #linksMenu a:hover  ,#adminMenu a:hover {
+    animation: bounce 1s ease infinite alternate;
+    background-color: rgba(255,255,255,0.3);
+    color:#FF9D00 ;
+}
 .item {
-    background-color : rgba(197,255,253,1);
+    background-color : #d5d6d2;
     color: #fff;
     margin : 15px 0;
     overflow: hidden;
     box-sizing: border-box;
     max-height:115px ;
     overflow: hidden;
-    box-shadow: 6px 6px 5px 1px #1E88E5;
+    box-shadow: 6px 6px 5px 1px #fff;
 }
 .text-center{
     text-align: center;
@@ -178,20 +403,21 @@ h2{
     margin: 10px 0 10px;
 }
 .item .aside{
-    background-color:rgba(0,168,243,0.90);
+    background-color:#FF9D00;
     padding: 10px;
     box-sizing: border-box;
-    box-shadow: 0 0 10px 2px #fff inset;
+   /* box-shadow: 0 0 10px 2px #fff inset; */
 }
 .item .content {
-    color: #00a8f3;
+    margin-left:10px;
+    color:#FF9D00;
 
 }
 .aside a {
     color: #fff;
 }
 .article , .article a {
-    color: #00a8f3;
+    color: #FF9D00;
 }
 .cour{
     color:#fff;
@@ -220,19 +446,22 @@ input.search::placeholder{
 #btn_search{
     color: #fff;
     font-size:3rem;
-    margin-right: 50px;
+    margin-right: 1%;
 
 }
 #btn_search:hover{
-    color:  #c5fffd;
+   animation: bounce 1s ease infinite alternate;
+    color:  #FF9800;
     cursor:pointer ;
 }
 #search_bar{
-    width:100%;
     color: rgba(240,240,240,0.5);
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row-reverse;
+    position: absolute;
+    right:1%;
+    top: 70%;
 }
 
 /* ------------- Generic Form -------------- */
@@ -242,7 +471,7 @@ input.search::placeholder{
 }
 .generic-form fieldset {
     padding: 10px;
-    color: #005B83;
+    color: #FF9800;
     border-radius: 15px;
     border-color:#fff;
     margin-bottom: 10px;
@@ -251,7 +480,7 @@ input.search::placeholder{
     color: #fff;
     margin: 0 5px;
 }
-.generic-form input{
+.generic-form input,.generic-form textarea{
     background-color: transparent;
     outline-color: #fff;
     border: #fff solid 1px;
@@ -259,9 +488,10 @@ input.search::placeholder{
     padding:5px;
     margin:5px 0;
 }
+
 .generic-form input[type="submit"]{
     border: none;
-    background-color: #00a8f3;
+    background-color: #FF9D00;
     color: #fff;
     margin-left: 45%;
     text-align: center;
@@ -270,7 +500,7 @@ input.search::placeholder{
 .generic-form input::placeholder{
     color:  rgba(197, 255, 252, 1);
 }
-.generic-form input:focus{
+.generic-form input:focus,.generic-form textarea:focus{
     outline: none;
 }
 .generic-form label {
@@ -285,17 +515,18 @@ input.search::placeholder{
     padding: 0.5em 1em;
 
     /* presentation */
-    background-color: rgba(0,168,243,0.8);
+    background-color: rgba(180,180,180,0.8);
     box-shadow: 0 0 10px 4px #FF9800 ;
     /*border: 2px solid #FF3300;*/
     border-radius: 6px;
     color: white;
+    font-weight: bold;
 }
 
 @media screen and (min-width:768px) and (max-width:1024px) {
     header nav {
         display: flex;
-        flex-direction: column;
+        /*flex-direction: column;*/
     }
     header {
         height: 300px;
@@ -317,7 +548,13 @@ input.search::placeholder{
 @media screen and (max-width:768px) {
     header nav {
         display: flex;
-        flex-direction: column;
+        /*flex-direction: column;*/
+    }
+    header nav a span.mobile{
+        display: none;
+    }
+    header nav a i.material-icons {
+        display: block;
     }
     header {
         height: 330px;
@@ -326,7 +563,13 @@ input.search::placeholder{
         flex-basis: 100%;
     }
     #search_bar{
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+    }
+    #search_bar input{
+        width:70px;
+    }
+    #search_bar input::placeholder{
+        font-size: 10px;
     }
     #coursMenu , #linksMenu , #adminMenu{
         top:330px;
@@ -340,5 +583,8 @@ input.search::placeholder{
     }
     .aside{
         display: none;
+    }
+    article.scene--card{
+        width: 100%;
     }
 }

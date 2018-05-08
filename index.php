@@ -26,4 +26,5 @@ try {
 }
 
 //todo ajouter le verifieur de formulaires.
+//todo : ajouter un gif pendant les chargement de pages
 include WWW . "layout.phtml";

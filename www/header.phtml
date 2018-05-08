@@ -1,39 +1,43 @@
 
 <header class="flex flex-wrap align-center">
+    <div class="stage">
 
-	<nav>
+        <a href="index.php?page=home" id="logo"><figure class="ball"><span class="shadow"></span></figure></a>
+    </div>
 
-		<a href="index.php?page=home" id="logo"><img src="www/img/cddev.svg"></a>
-		<a href="#" id="linkCours" data-menu="coursMenu">Cours</a>
-		<a href="#" data-menu="linksMenu">Liens utiles</a>
-		<a href="index.php?page=contact">Contact</a>
-        <?php if(session_status() != PHP_SESSION_NONE ):?>
-            <?php if($userSession->isAdminLogged()):?>
-                <a href="#" data-menu="adminMenu">Panneau Admin</a>
-            <?php endif; ?>
+    <div id="user-nav">
+		<?php if(session_status() != PHP_SESSION_NONE ):?>
+
+			<?php if($userSession->isLogged()):?>
+
+                <a href="index.php?page=logout" >Déconnexion </a>
+			<?php else: ?>
+                <a href="index.php?page=login" >Connexion </a>
+                <a href="index.php?page=register" >Inscription </a>
+			<?php endif; ?>
 		<?php endif; ?>
 
+    </div>
+    <nav>
+
+		<a href="#" id="linkCours" data-menu="coursMenu"><span class="mobile">Cours</span><i class="material-icons ">library_books</i></a>
+        <a href="#" data-menu="linksMenu"><span class="mobile">Liens utiles</span><i class="material-icons ">link</i></a>
+		<a href="index.php?page=contact"><span class="mobile">Contact</span><i class="material-icons ">contact_phone</i></a>
+        <?php if(session_status() != PHP_SESSION_NONE ):?>
+            <?php if($userSession->isAdminLogged()):?>
+                <a href="#" data-menu="adminMenu"><span class="mobile"> Panneau Admin</span><i class="material-icons ">gesture</i></a>
+            <?php endif; ?>
+		<?php endif; ?>
+        <form id="search_bar">
+            <i class="material-icons" id="btn_search">search</i>
+            <input type="text" placeholder="Rechercher" name="search" class="search">
+
+        </form>
     </nav>
 
 
-    <form id="search_bar">
-        <i class="material-icons" id="btn_search">search</i>
-        <input type="text" placeholder="Rechercher" name="search" class="search">
-        <div id="user-nav">
-		    <?php if(session_status() != PHP_SESSION_NONE ):?>
 
-			    <?php if($userSession->isLogged()):?>
-
-                    <a href="index.php?page=logout" >Se deconnecter </a>
-			    <?php else: ?>
-                    <a href="index.php?page=login" >Se connecter </a>
-                    <a href="index.php?page=register" >S'inscrire </a>
-			    <?php endif; ?>
-		    <?php endif; ?>
-
-        </div>
-    </form>
-    <div id="coursMenu" class="flex hidden full-width space-around absolute" data-submenu>
+    <div id="coursMenu" class="flex hidden space-around absolute" data-submenu data-over="false">
 		<div class="flex flex-column">
 			<a href="index.php?page=courses&subject=html" class="color-white sub-menu">HTML</a>
 		</div>
@@ -50,7 +54,7 @@
 			<a href="index.php?page=courses&subject=mysql"  class="color-white sub-menu">MySQL</a>
 		</div>
 	</div>
-	<div id="linksMenu" class="flex hidden full-width space-around absolute" data-submenu>
+	<div id="linksMenu" class="flex hidden  space-around absolute" data-submenu data-over="false">
 		<div class="flex flex-column">
 			<a href="index.php?page=links&subject=html" class="color-white sub-menu">HTML</a>
 		</div>
@@ -73,7 +77,7 @@
 	<?php if(session_status() != PHP_SESSION_NONE ):?>
 
         <?php if($userSession->isAdminLogged()):?>
-            <div id="adminMenu" class="flex hidden full-width space-around absolute" data-submenu>
+            <div id="adminMenu" class="flex hidden space-around absolute" data-submenu data-over="false">
                 <div class="flex flex-column">
                     <a href="index.php?page=admin&action=addCourse" class="color-white sub-menu">Ajouter un cours</a>
                 </div>

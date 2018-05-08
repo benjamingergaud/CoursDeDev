@@ -31,6 +31,7 @@ class contactController
 					'X-Mailer: PHP/' . phpversion();
 				ini_set("sendmail_from","$userMail");
 				mail("gergaud.benjamin@gmail.com",$this->subject,$this->content,$headers);
+
 			}
 
 			return[

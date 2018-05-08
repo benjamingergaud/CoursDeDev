@@ -48,6 +48,8 @@
 					$user_id = $userSession->get_user_id();
 					if(empty($_POST['content'])||empty($_POST['category'])||empty($_POST['title']))
 						throw new DomainException("Veuillez remplir tous les champs");
+					if(!strpos($_POST["content"],"http"))
+						throw new DomainException("Le lien entré n'est pas valide");
 					$linksModel = new LinksModel();
 					$linksModel->addLink($_POST['content'],$_POST['category'],$_POST['title'],$user_id);
 				}

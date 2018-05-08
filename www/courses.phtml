@@ -8,17 +8,22 @@
 <?php endif;?>
 <!-- On affiche la liste des cours si aucun cour n'est cliqué -->
 <?php foreach($courses as $course):?>
-<article class="flex flex-wrap full-width justify-center item">
-	<div class="flex flex-basis20 flex-column aside">
-		<p class="">Ecrit par <?= $course['pseudo']?></p>
-		<p>Le <?= $course['cour_date']?></p>
-	</div>
+    <article class="scene scene--card">
+        <a href="?page=courses&id=<?= $course['id']?>">
+            <div class="card">
+                <div class="card__face card__face--front">
+                    <p href="?page=courses&id=<?= $course['id']?>" class="full-width size25"><?= $course['title']?></p>
 
-	<div class="flex flex-basis80 flex-column article">
-		<a href="?page=courses&id=<?= $course['id']?>" class="full-width size25"><?= $course['title']?></a>
-		<p class="full-width content"><?= $course['content']?></p>
-	</div>
-</article>
+
+                </div>
+                <div class="card__face card__face--back">
+                    <div class="full-width content"><?= $course['content']?></div>
+                    <p class="over-card"> Lire la suite </p>
+                </div>
+            </div>
+        </a>
+
+    </article>
 <?php endforeach;?>
 
 <!-- On affiche les details du cours si un cour est cliqué -->

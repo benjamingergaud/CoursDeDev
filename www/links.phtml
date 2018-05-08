@@ -10,16 +10,21 @@
 
 <!-- On affiche la liste des cours si aucun cour n'est cliqué -->
 <?php foreach($links as $link):?>
-<article class="flex flex-wrap full-width justify-center item">
-	<div class="flex flex-basis20 flex-column aside">
-		<p class="">Ecrit par <?= $link['pseudo']?></p>
-		<p>Le <?= $link['link_date']?></p>
-	</div>
+    <article class="scene scene--card">
+        <a href="<?=$link['content']?>" target="_blank">
+            <div class="card">
+                <div class="card__face card__face--front">
+                    <p class="full-width size25"><?= $link['title']?></p>
 
-	<div class="flex flex-basis80 flex-column article">
-		<h2 class="full-width size25"><?= $link['title']?></h2>
-		<a href="<?=$link['content']?>"  target = "_blank" class="full-width"><?=  mb_strimwidth($link['content'], 0, 100, "...") ?></a>
-	</div>
-</article>
+
+                </div>
+                <div class="card__face card__face--back">
+                    <p class="full-width content"><?= $link['content']?></p>
+                    <p class="over-card">Ouvrir le lien </p>
+                </div>
+            </div>
+        </a>
+
+    </article>
 <?php endforeach;?>
 
